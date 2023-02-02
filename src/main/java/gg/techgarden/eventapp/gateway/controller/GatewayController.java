@@ -28,7 +28,7 @@ public class GatewayController {
             throws URISyntaxException {
         String requestUrl = request.getRequestURI();
 
-        String serviceName = requestUrl.split("/")[2];
+        String serviceName = requestUrl.split("/")[3];
 
         URI uri = new URI("http", null, serviceName + "-service", 8080, null, null, null);
         uri = UriComponentsBuilder.fromUri(uri)
