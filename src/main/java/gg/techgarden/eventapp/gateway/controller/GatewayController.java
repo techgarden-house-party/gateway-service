@@ -22,13 +22,13 @@ import java.util.Enumeration;
 @Slf4j
 @CrossOrigin
 public class GatewayController {
-    @RequestMapping("/{serviceName}/**")
-    public ResponseEntity mirrorRest(@RequestBody(required = false) String body, @PathVariable String serviceName,
+    @RequestMapping("/**")
+    public ResponseEntity mirrorRest(@RequestBody(required = false) String body,
                                      HttpMethod method, HttpServletRequest request, HttpServletResponse response)
             throws URISyntaxException {
         String requestUrl = request.getRequestURI();
 
-        log.info("Request Url: {}", requestUrl);
+        String serviceName = requestUrl.split("/")[2];
 
         URI uri = new URI("http", null, serviceName + "-service", 8080, null, null, null);
         uri = UriComponentsBuilder.fromUri(uri)
